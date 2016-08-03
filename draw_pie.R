@@ -9,8 +9,13 @@ drawPie <- function(data, labels)
 {
 
  png(file='smTotals_pie.png')
- pie(data, labels) 
- dev.off()
+ piepercent<- round(100*data/sum(data), 1)
+
+ pie(data, labels=piepercent, main='SM Backgrounds', col=rainbow(length(data)))
+ legend("topright", labels, cex = 0.8,
+   fill = rainbow(length(data)))
+
+dev.off()
  
 }
 
