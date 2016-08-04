@@ -8,8 +8,12 @@ argv <- commandArgs(trailingOnly = FALSE)
 drawLine <- function(tbl, x_var, y_vars)
  {
 
- png(file='line_graph.png')
- xvar <- tbl[[x_var]]
+ mainDir = './plot_outputs'
+ dir.create(file.path(mainDir, ''), showWarnings = FALSE)
+ outpath <- file.path('./plot_outputs',paste("myplot_minChi", ".png", sep = ""))
+ png(file=outpath)
+
+xvar <- tbl[[x_var]]
 
  yVars <- ifelse(length(y_vars)>1,TRUE,FALSE)
  y_var <- y_vars[1]
