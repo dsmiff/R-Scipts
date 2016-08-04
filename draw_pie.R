@@ -15,7 +15,7 @@ drawPie <- function(data, labels)
  legend("topright", labels, cex = 0.8,
    fill = rainbow(length(data)))
 
-dev.off()
+ dev.off()
  
 }
 
