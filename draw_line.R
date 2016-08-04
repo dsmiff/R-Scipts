@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 # Dom Smith <dosmith@cern.ch>
 
+source('Rutils.R')
+
 ##__________________________________________________________________||
 argv <- commandArgs(trailingOnly = FALSE)
 
@@ -8,12 +10,7 @@ argv <- commandArgs(trailingOnly = FALSE)
 drawLine <- function(tbl, x_var, y_vars)
  {
 
- mainDir = './plot_outputs'
- dir.create(file.path(mainDir, ''), showWarnings = FALSE)
- outpath <- file.path('./plot_outputs',paste("myplot_minChi", ".png", sep = ""))
- png(file=outpath)
-
-xvar <- tbl[[x_var]]
+ xvar <- tbl[[x_var]]
 
  yVars <- ifelse(length(y_vars)>1,TRUE,FALSE)
  y_var <- y_vars[1]
@@ -48,8 +45,9 @@ main <- function()
  #y_var <- 'QCD'
  y_vars <- c('QCD','TTJets') 
 
- drawLine(tbl, x_var, y_vars)
- 
+ l <- drawLine(tbl, x_var, y_vars)
+
+ save.figure.png(l, 'line_plot', './plot_outputs')
  }
 
 ##__________________________________________________________________||
